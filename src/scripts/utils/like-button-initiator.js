@@ -22,7 +22,7 @@ const LikeButtonInitiator = {
     const movie = await FavoriteMovieIdb.getMovie(id);
     return !!movie;
   },
- 
+
   _renderLike() {
     this._likeButtonContainer.innerHTML = createLikeButtonTemplate();
     const likeButton = document.querySelector('#likeButton');
@@ -31,7 +31,7 @@ const LikeButtonInitiator = {
       this._renderButton();
     });
   },
- 
+
   _renderLiked() {
     this._likeButtonContainer.innerHTML = createLikedButtonTemplate();
     const likeButton = document.querySelector('#likeButton');
