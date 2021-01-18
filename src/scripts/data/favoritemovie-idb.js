@@ -5,7 +5,7 @@ const { DATABASE_NAME, DATABASE_VERSION, OBJECT_STORE_NAME } = CONFIG;
 
 const dbPromise = openDB(DATABASE_NAME, DATABASE_VERSION, {
   upgrade(database) {
-    database.createObjectStore(OBJECT_STORE_NAME, { keyPath: 'key' });
+    database.createObjectStore(OBJECT_STORE_NAME, { keyPath: 'id', autoIncrement: true });
   },
 });
 
@@ -16,8 +16,8 @@ const FavoriteMovieIdb = {
   async getAllMovies() {
     return (await dbPromise).getAll(OBJECT_STORE_NAME);
   },
-  async putMovie(id) {
-    return (await dbPromise).put(OBJECT_STORE_NAME, id);
+  async putMovie(movie) {
+    return (await dbPromise).put(OBJECT_STORE_NAME, movie);
   },
   async deleteMovie(id) {
     return (await dbPromise).delete(OBJECT_STORE_NAME, id);
