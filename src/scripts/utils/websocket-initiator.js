@@ -8,9 +8,9 @@ const WebSocketInitiator = {
   },
 
   _onMessageHandler(message) {
-    const movie = message.data;
+    const movie = JSON.parse(message.data);
     NotificationHelper.sendNotification({
-      title: movie,
+      title: `${movie.title} is on cinema!`,
       options: {
         // kesalahan materi, perlu perubahan konfigurasi, jadi skip dulu
         body: movie.overview,
