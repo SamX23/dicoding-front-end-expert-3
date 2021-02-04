@@ -1,2 +1,4 @@
 node_modules
 /src/scripts/globals/config.js
+
+package-lock.json
