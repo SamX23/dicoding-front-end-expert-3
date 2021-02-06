@@ -46,4 +46,4 @@ const itActsAsFavoriteMovieModel = (favoriteMovie) => {
   });
 };
 
-export default itActsAsFavoriteMovieModel;
+export { itActsAsFavoriteMovieModel };
