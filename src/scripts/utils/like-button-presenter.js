@@ -1,13 +1,14 @@
-import FavoriteMovies from "../data/favoritemovie-idb";
 import {
   createLikeMovieButtonTemplate,
   createUnlikeMovieButtonTemplate,
 } from "../views/templates/template-creator";
 
 const LikeButtonPresenter = {
-  async init({ likeButtonContainer, movie }) {
+  async init({ likeButtonContainer, favoriteMovies: FavoriteMovies, movie }) {
     this._likeButtonContainer = likeButtonContainer;
     this._movie = movie;
+    this._favoriteMovies = FavoriteMovies;
+
     await this._renderButton();
   },
 
@@ -22,7 +23,7 @@ const LikeButtonPresenter = {
   },
 
   async _isMovieExist(id) {
-    const movie = await FavoriteMovies.getMovie(id);
+    const movie = await this._favoriteMovies.getMovie(id);
     return !!movie;
   },
 
@@ -30,7 +31,7 @@ const LikeButtonPresenter = {
     this._likeButtonContainer.innerHTML = createLikeMovieButtonTemplate();
     const likeButton = document.querySelector("#likeButton");
     likeButton.addEventListener("click", async () => {
-      await FavoriteMovies.putMovie(this._movie);
+      await this._favoriteMovies.putMovie(this._movie);
       this._renderButton();
     });
   },
@@ -39,7 +40,7 @@ const LikeButtonPresenter = {
     this._likeButtonContainer.innerHTML = createUnlikeMovieButtonTemplate();
     const likeButton = document.querySelector("#likeButton");
     likeButton.addEventListener("click", async () => {
-      await FavoriteMovies.deleteMovie(this._movie.id);
+      await this._favoriteMovies.deleteMovie(this._movie.id);
       this._renderButton();
     });
   },
