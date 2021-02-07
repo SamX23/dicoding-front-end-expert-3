@@ -1,3 +1,5 @@
+import FavoriteMovieSearchPresenter from "../src/scripts/views/pages/liked-movies/favorite-movie-search-presenter";
+
 describe("Searching movies", () => {
   beforeEach(() => {
     document.body.innerHTML = `
@@ -12,11 +14,19 @@ describe("Searching movies", () => {
   });
 
   it("should be able to capture the query typed by the user", () => {
+    const presenter = new FavoriteMovieSearchPresenter();
     const queryElement = document.getElementById("query");
     queryElement.value = "film a";
-    // event pengguna tekan enter
     queryElement.dispatchEvent(new Event("change"));
 
-    expect(new FavoriteMovieSearchPresenter().userQuery).toEqual("film a");
+    expect(presenter.latestQuery).toEqual("film a");
+  });
+
+  it("should ask the model to search for liked movies", () => {
+    const presenter = new FavoriteMovieSearchPresenter();
+
+    const queryElement = document.getElementById("query");
+    queryElement.value = "film a";
+    queryElement.dispatchEvent(new Event("change"));
   });
 });
