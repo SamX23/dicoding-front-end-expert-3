@@ -1,4 +1,5 @@
 import FavoriteMovieSearchPresenter from "../src/scripts/views/pages/liked-movies/favorite-movie-search-presenter";
+import FavoriteMovie from "../src/scripts/data/favoritemovie-idb";
 
 describe("Searching movies", () => {
   beforeEach(() => {
@@ -14,7 +15,11 @@ describe("Searching movies", () => {
   });
 
   it("should be able to capture the query typed by the user", () => {
-    const presenter = new FavoriteMovieSearchPresenter();
+    spyOn(FavoriteMovie, "searchMovies");
+    const presenter = new FavoriteMovieSearchPresenter({
+      favoriteMovies: FavoriteMovie,
+    });
+
     const queryElement = document.getElementById("query");
     queryElement.value = "film a";
     queryElement.dispatchEvent(new Event("change"));
@@ -23,10 +28,15 @@ describe("Searching movies", () => {
   });
 
   it("should ask the model to search for liked movies", () => {
-    const presenter = new FavoriteMovieSearchPresenter();
+    spyOn(FavoriteMovie, "searchMovies");
+    const presenter = new FavoriteMovieSearchPresenter({
+      favoriteMovies: FavoriteMovie,
+    });
 
     const queryElement = document.getElementById("query");
     queryElement.value = "film a";
     queryElement.dispatchEvent(new Event("change"));
+
+    expect(FavoriteMovie.searchMovies).toHaveBeenCalledWith("film a");
   });
 });
