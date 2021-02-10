@@ -33,7 +33,7 @@ Scenario("liking one movie", async ({ I }) => {
   assert.strictEqual(firstFilmTitle, likedFilmTitle);
 });
 
-Scenario("searching movies", async (I) => {
+Scenario("searching movies", async ({ I }) => {
   I.see("Tidak ada film untuk ditampilkan", ".movie-item__not__found");
 
   I.amOnPage("/");
