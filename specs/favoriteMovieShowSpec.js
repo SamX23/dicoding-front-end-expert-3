@@ -4,9 +4,10 @@ import FavoriteMovie from "../src/scripts/data/favoritemovie-idb";
 
 describe("Showing all favorite movies", () => {
   let view;
+
   const renderTemplate = () => {
     view = new FavoriteMovieSearchView();
-    document.body.innerHTML = view.getFavoriteMovieTemplate();
+    document.body.innerHTML = view.getTemplate();
   };
 
   beforeEach(() => {
