@@ -1,5 +1,5 @@
 import FavoriteMovieSearchPresenter from "../src/scripts/views/pages/liked-movies/favorite-movie-search-presenter";
-import FavoriteMovie from "../src/scripts/data/favoritemovie-idb";
+import FavoriteMovies from "../src/scripts/data/favoritemovie-idb";
 import FavoriteMovieSearchView from "../src/scripts/views/pages/liked-movies/favorite-movie-search-view";
 
 describe("Searching movies", () => {
@@ -19,7 +19,7 @@ describe("Searching movies", () => {
   };
 
   const constructPresenter = () => {
-    favoriteMovies = spyOnAllFunctions(FavoriteMovie);
+    favoriteMovies = spyOnAllFunctions(FavoriteMovies);
     presenter = new FavoriteMovieSearchPresenter({
       favoriteMovies,
       view,

@@ -1,6 +1,6 @@
 import FavoriteMovieSearchView from "../src/scripts/views/pages/liked-movies/favorite-movie-search-view";
 import FavoriteMovieShowPresenter from "../src/scripts/views/pages/liked-movies/favorite-movie-show-presenter";
-import FavoriteMovie from "../src/scripts/data/favoritemovie-idb";
+import FavoriteMovies from "../src/scripts/data/favoritemovie-idb";
 
 describe("Showing all favorite movies", () => {
   let view;
@@ -16,7 +16,7 @@ describe("Showing all favorite movies", () => {
 
   describe("When no movies have been liked", () => {
     it("should ask for the favorite movies", () => {
-      const favoriteMovies = spyOnAllFunctions(FavoriteMovie);
+      const favoriteMovies = spyOnAllFunctions(FavoriteMovies);
 
       new FavoriteMovieShowPresenter({
         view,
@@ -37,7 +37,7 @@ describe("Showing all favorite movies", () => {
           done();
         });
 
-      const favoriteMovies = spyOnAllFunctions(FavoriteMovie);
+      const favoriteMovies = spyOnAllFunctions(FavoriteMovies);
       favoriteMovies.getAllMovies.and.returnValues([]);
 
       new FavoriteMovieShowPresenter({
@@ -56,7 +56,7 @@ describe("Showing all favorite movies", () => {
           done();
         });
 
-      const favoriteMovies = spyOnAllFunctions(FavoriteMovie);
+      const favoriteMovies = spyOnAllFunctions(FavoriteMovies);
       favoriteMovies.getAllMovies.and.returnValues([
         {
           id: 11,
